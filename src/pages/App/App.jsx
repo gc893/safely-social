@@ -5,13 +5,16 @@ import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
 import authService from "../../services/authService";
 import userService from "../../services/userService";
+import covidDataService from "../../services/covidDataService";
 import Users from "../Users/Users";
 import "./App.css";
 
 class App extends Component {
   state = {
     user: authService.getUser(),
-    userData: null
+    userData: null,
+    resources: null,
+    stats: null
   };
 
   handleLogout = () => {
@@ -29,6 +32,12 @@ class App extends Component {
     if (this.state.user) {
       let uData = await userService.getOne(this.state.user);
       this.setState({userData: uData})
+
+      let resourceData = await covidDataService.getStateResources()
+      this.setState({resources: resourceData})
+
+      let stats = await covidDataService.getStateData()
+      this.setState({stats: stats})
     }
   }
 
