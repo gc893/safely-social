@@ -32,13 +32,12 @@ class App extends Component {
     if (this.state.user) {
       let uData = await userService.getOne(this.state.user);
       this.setState({userData: uData})
-
-      let resourceData = await covidDataService.getStateResources()
+    }
+    let resourceData = await covidDataService.getStateResources()
       this.setState({resources: resourceData})
 
       let stats = await covidDataService.getStateData()
       this.setState({stats: stats})
-    }
   }
 
   render() {
