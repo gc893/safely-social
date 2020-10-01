@@ -13,7 +13,7 @@ const NavBar = ({ user, handleLogout }) => {
       {user ?
         <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">reactstrap</NavbarBrand>
+          <NavbarBrand href="/">SafelySocial</NavbarBrand>
             <Nav className="mr-auto" navbar>
               <a href=" " className="nav-link">Welcome, {user.name}</a>
               <a href="/users" className="nav-link">Users</a>
@@ -25,7 +25,7 @@ const NavBar = ({ user, handleLogout }) => {
       :
       <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <NavbarBrand href="/">SafelySocial</NavbarBrand>
           <Nav className="mr-auto" navbar>
               <a href="/login" className="nav-link">Log In</a>
               <a href="/users" className="nav-link">Users</a>
