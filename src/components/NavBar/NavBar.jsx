@@ -1,28 +1,39 @@
 import React from 'react';
+import {
+  Navbar,
+  NavbarBrand,
+  Nav,
+  NavbarText
+} from 'reactstrap';
+
 
 const NavBar = ({ user, handleLogout }) => {
     return (
     <>
       {user ?
-        <nav>
-          <div className="nav-wrapper">
-            <ul id="nav-mobile" className="right">
-              <li><a href=" " className="nav-link">Welcome, {user.name}</a></li>
-              <li><a href="/users" className="nav-link">Users</a></li>
-              <li><a href=" " className="nav-link" onClick={handleLogout}>Log Out</a></li>
-            </ul>
-          </div>
-        </nav>
+        <div>
+        <Navbar color="light" light expand="md">
+          <NavbarBrand href="/">reactstrap</NavbarBrand>
+            <Nav className="mr-auto" navbar>
+              <a href=" " className="nav-link">Welcome, {user.name}</a>
+              <a href="/users" className="nav-link">Users</a>
+              <a href=" " className="nav-link" onClick={handleLogout}>Log Out</a>
+            </Nav>
+          <NavbarText>Simple Text</NavbarText>
+      </Navbar>
+    </div>
       :
-        <nav>
-          <div className="nav-wrapper">
-            <ul id="nav-mobile" className="right">
-              <li><a href="/login" className="nav-link">Log In</a></li>
-              <li><a href="/users" className="nav-link">Users</a></li>
-              <li><a href="/signup" className="nav-link">Sign Up</a></li>
-            </ul>
-          </div>
-        </nav>
+      <div>
+      <Navbar color="light" light expand="md">
+        <NavbarBrand href="/">reactstrap</NavbarBrand>
+          <Nav className="mr-auto" navbar>
+              <a href="/login" className="nav-link">Log In</a>
+              <a href="/users" className="nav-link">Users</a>
+              <a href="/signup" className="nav-link">Sign Up</a>
+              </Nav>
+          <NavbarText>Simple Text</NavbarText>
+      </Navbar>
+    </div>
       }
     </>
   )
