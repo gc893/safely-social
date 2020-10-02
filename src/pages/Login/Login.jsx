@@ -33,6 +33,11 @@ class LoginPage extends Component {
   render() {
     const {email, pw} = this.state
     return (
+      <body style={{
+        marginLeft:'40%'
+      }}>
+        
+      
         <Form autoComplete="off" onSubmit={this.handleSubmit} className='form'>
         <h5 className='title'>LOG IN</h5>
         <div>
@@ -72,6 +77,8 @@ class LoginPage extends Component {
           <br></br>
           Don't have an account? <Link to="/signup">Sign up here!</Link>
         </Form>
+
+        </body>
       
     );
   }
