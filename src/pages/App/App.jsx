@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
+import Dropdown from "../../components/Dropdown/Dropdown";
 import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
 import authService from "../../services/authService";
@@ -49,8 +50,11 @@ class App extends Component {
           exact
           path="/"
           render={() => (
-            <main>
-              <h1>Welcome to Safely Social!</h1>
+            <main className='flex-centered'>
+              {this.state.user ? 
+                <Dropdown resources={this.state.resources}/> : 
+                <h1>Welcome to Safely Social!</h1>
+              }
             </main>
           )}
         />
