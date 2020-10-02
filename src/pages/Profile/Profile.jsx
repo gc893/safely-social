@@ -4,9 +4,7 @@ import userService from "../../services/userService";
 
 
 class Profile extends Component {
-    state = { 
-       
-     }
+    state = {}
 
      async componentDidMount(){
         const userData = await userService.getOne()
@@ -15,11 +13,11 @@ class Profile extends Component {
 
      
     render() { 
-        const {userData} = this.state;
+        
         return ( 
             <>
             <ProfileComp 
-            userData={userData}
+            userData={this.props.userData}
             />
             </>
          );
