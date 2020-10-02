@@ -52,7 +52,7 @@ class App extends Component {
           render={() => (
             <main className='flex-centered'>
               {this.state.user ? 
-                <Dropdown resources={this.state.resources}/> : 
+                <Dropdown resources={this.state.resources} stats={this.state.stats}/> : 
                 <h1>Welcome to Safely Social!</h1>
               }
             </main>
