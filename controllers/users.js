@@ -14,7 +14,6 @@ function index(req, res) {
 
 function getOne(req, res) {
   User.findById(req.params.id)
-  .populate('favState')
   .then((user) => res.json(user));
 }
 
