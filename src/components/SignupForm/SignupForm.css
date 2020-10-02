@@ -1,0 +1,38 @@
+
+
+  button{
+      color: white;
+      background-color: #ef8354;
+      width: 20%;
+      padding: 4px;
+      font-weight: bolder;
+      
+  }
+
+  .title{
+      margin: 20px;
+      font-size: 18px;
+  }
+
+  .input{
+      padding: 5px;
+      margin: 8px;
+      width: 20%;
+      border-radius: 8px;
+      border-color: rgba(240,240,240, 1);
+      color: black;
+      font-weight: 400;
+      background-color: rgba(240,240,240, 1);
+      /* opacity: .5; */
+
+  }
+
+  .form{
+      margin-top: 10%;
+
+  }
+
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: black;
+    
+  }
