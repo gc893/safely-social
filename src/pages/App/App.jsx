@@ -57,14 +57,15 @@ class App extends Component {
         <Route
           exact
           path="/"
-          render={() => (
+          render={({history}) => (
             <main className='flex-centered'>
               {this.state.user ? 
                 <Dropdown resources={this.state.resources} stats={this.state.stats}
                 id={this.state.user}
                 userData={userData}
+                history={history}
                 /> : 
-                <h1>Welcome to Safely Social!</h1>
+                <h1 style={{width:'100%', margin: '2em'}}>Welcome to Safely Social!</h1>
               }
             </main>
           )}
