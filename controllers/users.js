@@ -19,11 +19,12 @@ function getOne(req, res) {
 }
 
 function addFavState(req, res){
-  User.findById(req.user._id)
+  User.findById(req.params.id)
   .then(user => {
     // if(req.body.favState === req.user._id){
     //   res.json(user)
     // }else{
+      console.log(user)
       user.favState.push(req.params.state)
       user.save().then(
         res.json(user))
@@ -32,9 +33,9 @@ function addFavState(req, res){
  }
 
 function updateUser(req, res){
-  User.findByIdAndUpdate(req.user._id, req.body, {new: true})
-  .then(user => 
-    {  
-    res.json(user)}
-    )
+  // User.findByIdAndUpdate(req.user._id, req.body, {new: true})
+  // .then(user => 
+  //   {  
+  //   res.json(user)}
+  //   )
 }

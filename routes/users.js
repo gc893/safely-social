@@ -9,7 +9,7 @@ const usersCtrl = require('../controllers/users');
 router.use(require("../config/auth"));
 router.get("/", checkAuth, usersCtrl.index);
 router.get("/:id", checkAuth, usersCtrl.getOne);
-router.post('/:userId/:state', checkAuth, usersCtrl.addFavState)
+router.post('/:id/:state', checkAuth, usersCtrl.addFavState)
 router.put('/', checkAuth, usersCtrl.updateUser)
 
 
