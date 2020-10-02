@@ -22,38 +22,40 @@ class Dropdown extends React.Component {
                 stateCode = element.state
                 this.setState({
                     resourceLink: element.covid19Site,
-                    twitter: element.twitter
+                    twitter: element.twitter,
+                    stats: element.covid19SiteTertiary
                   });
             }
         });
-        this.props.stats.forEach(element => {
-            if(element.state === stateCode){
-                this.setState({
-                    stats: element.positive
-                  });
-            }
-        });
+        // this.props.stats.forEach(element => {
+        //     if(element.state === stateCode){
+        //         this.setState({
+        //             stats: element.positive
+        //           });
+        //     }
+        // });
       };
 
     handleGetData(state) {
         let stateCode = null
         let resource = null
         let twitter = null
-        let cases = null
+        let stats = null
         this.props.resources.forEach(element => {
             if(element.name === state) {
                 stateCode = element.state
                 resource = element.covid19Site
                 twitter = element.twitter
+                stats = element.covid19SiteTertiary
             }
             
         });
-        this.props.stats.forEach(element => {
-            if(element.state === stateCode){
-                cases = element.positive
-            }
-        });
-        return([resource, twitter, cases])
+        // this.props.stats.forEach(element => {
+        //     if(element.state === stateCode){
+        //         cases = element.positive
+        //     }
+        // });
+        return([resource, twitter, stats])
     }
 
     handleAddFav = () => {
@@ -72,7 +74,7 @@ class Dropdown extends React.Component {
             <h3>{this.state.selectedState ? `State: ${this.state.selectedState}` : 'State: '}</h3>
             <main className='links-centered'>
                 <div id='link-container'>
-                {this.state.stats ? `${this.state.stats} cases` : 'Stats'}
+                {this.state.stats ? <a href={`${this.state.stats}`} target='_blank'>Stats</a> : 'Stats'}
                 </div>
                 <div id='link-container'>
                 {this.state.resourceLink ? <a href={`${this.state.resourceLink}`} target='_blank'>Resources</a> : 'Resources'}
@@ -92,7 +94,7 @@ class Dropdown extends React.Component {
                 
             <Card body className="text-center">
             <CardTitle>{state}</CardTitle>
-            <CardText> Cases: {this.handleGetData(state)[2]}</CardText>
+            <a href={this.handleGetData(state)[2]} target= '_blank'>Stats</a>
             <a href={`https://twitter.com/${this.handleGetData(state)[1]}`} target='_blank'>Twitter</a>
             <Button><a href={this.handleGetData(state)[0]} target= '_blank'>Go to Resource</a></Button>
             </Card>
