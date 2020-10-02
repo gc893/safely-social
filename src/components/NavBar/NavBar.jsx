@@ -5,6 +5,7 @@ import {
   Nav,
   NavbarText
 } from 'reactstrap';
+import './NavBar.css'
 
 
 const NavBar = ({ user, handleLogout }) => {

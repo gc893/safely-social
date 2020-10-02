@@ -4,6 +4,7 @@ import userService from '../../services/userService'
 import { Link } from 'react-router-dom'
 
 
+
 class Dropdown extends React.Component {
     state = { 
         selectedState: null,
@@ -96,7 +97,7 @@ class Dropdown extends React.Component {
             <CardTitle>{state}</CardTitle>
             <a href={this.handleGetData(state)[2]} target= '_blank'>Stats</a>
             <a href={`https://twitter.com/${this.handleGetData(state)[1]}`} target='_blank'>Twitter</a>
-            <Button><a href={this.handleGetData(state)[0]} target= '_blank'>Go to Resource</a></Button>
+            <Button><a href={this.handleGetData(state)[0]} target= '_blank' >Go to Resource</a></Button>
             </Card>
 
             ))

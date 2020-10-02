@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import authService from "../../services/authService"
+import { Form, FormGroup } from 'reactstrap'
 
 class LoginPage extends Component {
   state = {
@@ -32,9 +33,10 @@ class LoginPage extends Component {
   render() {
     const {email, pw} = this.state
     return (
-      <main className="Login">
-        <h3>Log In</h3>
-        <form autoComplete="off" onSubmit={this.handleSubmit}>
+        <Form autoComplete="off" onSubmit={this.handleSubmit} className='form'>
+        <h5 className='title'>LOG IN</h5>
+        <div>
+        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
           <input
             type="text"
             autoComplete="off"
@@ -42,8 +44,13 @@ class LoginPage extends Component {
             value={email}
             name="email"
             onChange={this.handleChange}
+            placeholder='Your Email'
+            className='mr-sm-2 input'
           />
-          <label htmlFor="email">Email</label>
+          </FormGroup>
+          </div>
+          <div>
+          <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
           <input
             type="password"
             autoComplete="off"
@@ -51,14 +58,21 @@ class LoginPage extends Component {
             value={pw}
             name="pw"
             onChange={this.handleChange}
+            placeholder='Your Password'
+            className='mr-sm-2 input'
           />
-          <label htmlFor="password">Password</label>
-          <button className="btn green">Log In</button>&nbsp;&nbsp;&nbsp;
-          <Link className="btn red" to="/">
-            Cancel
-          </Link>
-        </form>
-      </main>
+          </FormGroup>
+          </div>
+          <br></br>
+          <br></br>
+          <div>
+          <button className='mr-sm-2' block>Log In</button>
+          </div>
+          <br></br>
+          <br></br>
+          Don't have an account? <Link to="/signup">Sign up here!</Link>
+        </Form>
+      
     );
   }
 }

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import authService from "../../services/authService";
+import './SignupForm.css'
+import { Form, FormGroup, Label } from 'reactstrap'
 
 class SignupForm extends Component {
   state = {
@@ -38,9 +40,11 @@ class SignupForm extends Component {
   render() {
     const { name, email, password, passwordConf } = this.state;
     return (
+      
+      <Form autoComplete="off" onSubmit={this.handleSubmit} className='form'>
+        <h5 className='title'>CREATE ACCOUNT</h5>
       <div>
-        <h3>Sign Up</h3>
-        <form autoComplete="off" onSubmit={this.handleSubmit}>
+        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
           <input
             type="text"
             autoComplete="off"
@@ -48,8 +52,13 @@ class SignupForm extends Component {
             value={name}
             name="name"
             onChange={this.handleChange}
+            placeholder='Your Name'
+            className='mr-sm-2 input'
           />
-          <label htmlFor="name">Name</label>
+          </FormGroup>
+          </div>
+          <div>
+          <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
           <input
             type="text"
             autoComplete="off"
@@ -57,8 +66,13 @@ class SignupForm extends Component {
             value={email}
             name="email"
             onChange={this.handleChange}
+            placeholder='Your Email'
+            className='mr-sm-2 input'
           />
-          <label htmlFor="email">Email</label>
+          </FormGroup>
+          </div>
+          <div>
+          <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
           <input
             type="password"
             autoComplete="off"
@@ -66,8 +80,13 @@ class SignupForm extends Component {
             value={password}
             name="password"
             onChange={this.handleChange}
+            placeholder='Password'
+            className='mr-sm-2 input'
           />
-          <label htmlFor="password">Password</label>
+          </FormGroup>
+          </div>
+          <div>
+          <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
           <input
             type="password"
             autoComplete="off"
@@ -75,13 +94,21 @@ class SignupForm extends Component {
             value={passwordConf}
             name="passwordConf"
             onChange={this.handleChange}
+            placeholder='Repeat your password'
+            className='mr-sm-2 input'
           />
-          <label htmlFor="confirm">Confirm Password</label>
-          <button disabled={this.isFormInvalid()}>Sign Up</button>
+          </FormGroup>
+          </div>
+          <br></br>
+          <br></br>
+          <div>
+          <button disabled={this.isFormInvalid()} className='mr-sm-2' block>Sign Up!</button>
           &nbsp;&nbsp;
-          <Link to="/">Cancel</Link>
-        </form>
-      </div>
+          </div>
+          <br></br>
+          <br></br>
+          Already have an account? <Link to="/login">Login here</Link>
+      </Form>
     );
   }
 }
