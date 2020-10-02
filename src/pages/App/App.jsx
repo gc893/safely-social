@@ -8,12 +8,15 @@ import authService from "../../services/authService";
 import userService from "../../services/userService";
 import covidDataService from "../../services/covidDataService";
 import Users from "../Users/Users";
+import Profile from '../Profile/Profile'
+
+
 import "./App.css";
 
 class App extends Component {
   state = {
     user: authService.getUser(),
-    userData: null,
+    userData: {},
     resources: null,
     stats: null
   };
@@ -39,6 +42,11 @@ class App extends Component {
 
       let stats = await covidDataService.getStateData()
       this.setState({stats: stats})
+  }
+
+  handleUpdateUser = async userData => {
+    const updatedUser = await userService.updateUserInfo(userData)
+    this.setState({updatedUser})
   }
 
   render() {
@@ -83,6 +91,17 @@ class App extends Component {
           path="/users"
           render={() => (userData ? <Users /> : <Redirect to="/login" />)}
         />
+
+        <Route 
+        exact path='/profile'
+        render={() => (
+        this.state.user ? <Profile 
+        // user={this.state.updatedUser._id ? this.state.updatedUser : ''}
+        // handleUpdateUser={this.handleUpdateUser}
+        />
+        : 
+        <Redirect to="/login" />
+        )}/>``
       </>
     );
   }

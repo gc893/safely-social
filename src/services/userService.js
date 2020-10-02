@@ -22,7 +22,18 @@ function getOne(id) {
   ).then((res) => res.json());
 }
 
+function updateUserInfo(userData){
+  console.log(userData)
+  return fetch(`${BASE_URL}`,{
+      method: 'PUT',
+      headers: {'content-type': 'application/json','Authorization': 'Bearer ' + tokenService.getToken()},
+      body: JSON.stringify(userData)
+  }, {mode: "cors"})
+  .then(res => res.json())
+}
+
 export default {
   getAllUsers,
-  getOne
+  getOne,
+  updateUserInfo
 }

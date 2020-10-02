@@ -17,6 +17,7 @@ const NavBar = ({ user, handleLogout }) => {
             <Nav className="mr-auto" navbar>
               <a href=" " className="nav-link">Welcome, {user.name}</a>
               <a href="/users" className="nav-link">Users</a>
+              <a href="/profile" className="nav-link">Profile</a>
               <a href=" " className="nav-link" onClick={handleLogout}>Log Out</a>
             </Nav>
           <NavbarText>Simple Text</NavbarText>
