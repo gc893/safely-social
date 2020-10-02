@@ -64,8 +64,12 @@ class App extends Component {
                 id={this.state.user}
                 userData={userData}
                 history={history}
-                /> : 
+                /> : <>
                 <h1 style={{width:'100%', margin: '2em'}}>Welcome to Safely Social!</h1>
+                <img style={{display:'block'}} width='200px' src="https://i.imgur.com/AW8Lq0K.jpg" alt=""/>
+                <p>Safely plan your travel throughout the US</p>
+                <p>with state-by-state COVID-19 resources.</p>
+                </>
               }
             </main>
           )}
