@@ -8,6 +8,9 @@ import authService from "../../services/authService";
 import userService from "../../services/userService";
 import covidDataService from "../../services/covidDataService";
 import Users from "../Users/Users";
+import Profile from '../Profile/Profile'
+
+
 import "./App.css";
 
 class App extends Component {
@@ -41,6 +44,11 @@ class App extends Component {
       this.setState({stats: stats})
   }
 
+  handleUpdateUser = async userData => {
+    const updatedUser = await userService.updateUserInfo(userData)
+    this.setState({updatedUser})
+  }
+
   render() {
     const {userData} = this.state
     return (
@@ -52,7 +60,9 @@ class App extends Component {
           render={() => (
             <main className='flex-centered'>
               {this.state.user ? 
-                <Dropdown resources={this.state.resources} stats={this.state.stats}/> : 
+                <Dropdown resources={this.state.resources} stats={this.state.stats}
+                id={this.state.user}
+                /> : 
                 <h1>Welcome to Safely Social!</h1>
               }
             </main>
@@ -83,6 +93,18 @@ class App extends Component {
           path="/users"
           render={() => (userData ? <Users /> : <Redirect to="/login" />)}
         />
+
+        <Route 
+        exact path='/profile'
+        render={() => (
+        this.state.user ? <Profile
+        userData = {userData} 
+        // user={this.state.updatedUser._id ? this.state.updatedUser : ''}
+        // handleUpdateUser={this.handleUpdateUser}
+        />
+        : 
+        <Redirect to="/login" />
+        )}/>``
       </>
     );
   }

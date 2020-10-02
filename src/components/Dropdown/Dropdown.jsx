@@ -1,5 +1,6 @@
 import React from 'react'
 import {Button, Input} from 'reactstrap'
+import userService from '../../services/userService'
 
 class Dropdown extends React.Component {
     state = { 
@@ -37,6 +38,10 @@ class Dropdown extends React.Component {
 
     }
 
+    handleAddFav = () => {
+        userService.addFavState(this.props.id, this.state.selectedState)
+    }
+
     render() { 
         return ( 
         <>
@@ -57,6 +62,10 @@ class Dropdown extends React.Component {
                 <div id='link-container'>
                 {this.state.twitter ? <a href={`https://twitter.com/${this.state.twitter}`} target='_blank'>Twitter</a> : 'Twitter'}
                 
+                </div>
+                <div>
+                {this.state.selectedState ? <button id='link-container' onClick={this.handleAddFav}>Add as Favorite</button> : ''}
+
                 </div>
             </main>
         </> );

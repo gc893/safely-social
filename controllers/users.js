@@ -2,7 +2,9 @@ const User = require("../models/user");
 
 module.exports = {
   index,
-  getOne
+  getOne,
+  updateUser,
+  addFavState
 };
 
 function index(req, res) {
@@ -12,5 +14,28 @@ function index(req, res) {
 
 function getOne(req, res) {
   User.findById(req.params.id)
+  .populate('favState')
   .then((user) => res.json(user));
+}
+
+function addFavState(req, res){
+  User.findById(req.params.id)
+  .then(user => {
+    // if(req.body.favState === req.user._id){
+    //   res.json(user)
+    // }else{
+      console.log(user)
+      user.favState.push(req.params.state)
+      user.save().then(
+        res.json(user))
+    }
+   )
+ }
+
+function updateUser(req, res){
+  // User.findByIdAndUpdate(req.user._id, req.body, {new: true})
+  // .then(user => 
+  //   {  
+  //   res.json(user)}
+  //   )
 }
