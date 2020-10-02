@@ -1,6 +1,8 @@
 import React from 'react'
-import {Button, Input} from 'reactstrap'
+import {Button, Input, Card, CardTitle, CardText} from 'reactstrap'
 import userService from '../../services/userService'
+import { Link } from 'react-router-dom'
+
 
 class Dropdown extends React.Component {
     state = { 
@@ -18,24 +20,42 @@ class Dropdown extends React.Component {
         this.props.resources.forEach(element => {
             if(element.name === e.target.value) {
                 stateCode = element.state
-                console.log(stateCode)
                 this.setState({
                     resourceLink: element.covid19Site,
-                    twitter: element.twitter
+                    twitter: element.twitter,
+                    stats: element.covid19SiteTertiary
                   });
             }
         });
-        this.props.stats.forEach(element => {
-            if(element.state === stateCode){
-                this.setState({
-                    stats: element.positive
-                  });
-            }
-        });
+        // this.props.stats.forEach(element => {
+        //     if(element.state === stateCode){
+        //         this.setState({
+        //             stats: element.positive
+        //           });
+        //     }
+        // });
       };
 
-    handleSubmit() {
-
+    handleGetData(state) {
+        let stateCode = null
+        let resource = null
+        let twitter = null
+        let stats = null
+        this.props.resources.forEach(element => {
+            if(element.name === state) {
+                stateCode = element.state
+                resource = element.covid19Site
+                twitter = element.twitter
+                stats = element.covid19SiteTertiary
+            }
+            
+        });
+        // this.props.stats.forEach(element => {
+        //     if(element.state === stateCode){
+        //         cases = element.positive
+        //     }
+        // });
+        return([resource, twitter, stats])
     }
 
     handleAddFav = () => {
@@ -45,16 +65,16 @@ class Dropdown extends React.Component {
     render() { 
         return ( 
         <>
+        <div>
             <h1>Select a state!</h1>
             <Input onChange={this.handleChange} type="select" name="selectedState" style={{width: '50vmin', margin:'1em'}}>
                 <option selected disabled></option>
                 {this.props.resources?.map(({name}) => (<option key={name} value={name}>{name}</option>))}
             </Input>
-            {/* <Button onClick={this.handleSubmit} color="primary">Go</Button> */}
             <h3>{this.state.selectedState ? `State: ${this.state.selectedState}` : 'State: '}</h3>
             <main className='links-centered'>
                 <div id='link-container'>
-                {this.state.stats ? `${this.state.stats} cases` : 'Stats'}
+                {this.state.stats ? <a href={`${this.state.stats}`} target='_blank'>Stats</a> : 'Stats'}
                 </div>
                 <div id='link-container'>
                 {this.state.resourceLink ? <a href={`${this.state.resourceLink}`} target='_blank'>Resources</a> : 'Resources'}
@@ -68,7 +88,23 @@ class Dropdown extends React.Component {
 
                 </div>
             </main>
-        </> );
+            </div>
+            
+            {this.props.resources && this.props.stats && this.props.userData ? this.props.userData.favState.map(state => (
+                
+            <Card body className="text-center">
+            <CardTitle>{state}</CardTitle>
+            <a href={this.handleGetData(state)[2]} target= '_blank'>Stats</a>
+            <a href={`https://twitter.com/${this.handleGetData(state)[1]}`} target='_blank'>Twitter</a>
+            <Button><a href={this.handleGetData(state)[0]} target= '_blank'>Go to Resource</a></Button>
+            </Card>
+
+            ))
+            :
+            'Loading ...'
+            }
+        </>
+        );
     }
 }
  

@@ -16,8 +16,6 @@ const NavBar = ({ user, handleLogout }) => {
           <NavbarBrand href="/">SafelySocial</NavbarBrand>
             <Nav className="mr-auto" navbar>
               <a href=" " className="nav-link">Welcome, {user.name}</a>
-              <a href="/users" className="nav-link">Users</a>
-              <a href="/profile" className="nav-link">Profile</a>
               <a href=" " className="nav-link" onClick={handleLogout}>Log Out</a>
             </Nav>
           <NavbarText>Simple Text</NavbarText>
@@ -29,7 +27,6 @@ const NavBar = ({ user, handleLogout }) => {
         <NavbarBrand href="/">SafelySocial</NavbarBrand>
           <Nav className="mr-auto" navbar>
               <a href="/login" className="nav-link">Log In</a>
-              <a href="/users" className="nav-link">Users</a>
               <a href="/signup" className="nav-link">Sign Up</a>
               </Nav>
           <NavbarText>Simple Text</NavbarText>

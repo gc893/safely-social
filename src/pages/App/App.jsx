@@ -62,6 +62,7 @@ class App extends Component {
               {this.state.user ? 
                 <Dropdown resources={this.state.resources} stats={this.state.stats}
                 id={this.state.user}
+                userData={userData}
                 /> : 
                 <h1>Welcome to Safely Social!</h1>
               }
@@ -104,7 +105,7 @@ class App extends Component {
         />
         : 
         <Redirect to="/login" />
-        )}/>``
+        )}/>
       </>
     );
   }
