@@ -29,7 +29,6 @@ main {
 }
 
 #link-container {
-  background-color: rgb(240, 237, 237);
   margin: 1em;
   padding: 1em;
   border-radius: 10px;
@@ -39,7 +38,7 @@ main {
   color: black;
 }
 
-@media all and (max-width: 770px) {
+@media all and (max-width: 920px) {
   .links-centered {
     display: flex;
     flex-direction: column;
