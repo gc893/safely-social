@@ -65,13 +65,18 @@ class Dropdown extends React.Component {
     render() { 
         return ( 
         <>
-        <div>
-            <h1>Select a state!</h1>
-            <Input onChange={this.handleChange} type="select" name="selectedState" style={{width: '50vmin', margin:'1em'}}>
+        <div style={{width:'100%', margin: '5em'}}>
+            <div style={{textAlign:'left'}}>
+            <h1>Safely</h1>
+            <h1>Social</h1>
+            </div>
+            <Input onChange={this.handleChange} type="select" name="selectedState" style={{width: '90%', margin:'1em'}}>
                 <option selected disabled></option>
                 {this.props.resources?.map(({name}) => (<option key={name} value={name}>{name}</option>))}
             </Input>
-            <h3>{this.state.selectedState ? `State: ${this.state.selectedState}` : 'State: '}</h3>
+            {this.state.selectedState ? 
+            <>
+            <h1>{this.state.selectedState}</h1>
             <main className='links-centered'>
                 <div id='link-container'>
                 {this.state.stats ? <a href={`${this.state.stats}`} target='_blank'>Stats</a> : 'Stats'}
@@ -88,6 +93,9 @@ class Dropdown extends React.Component {
 
                 </div>
             </main>
+            </>
+            : ''}
+            
             </div>
             
             {this.props.resources && this.props.stats && this.props.userData ? this.props.userData.favState.map(state => (
