@@ -23,7 +23,6 @@ function getOne(id) {
 }
 
 function updateUserInfo(userData){
-  console.log(userData)
   return fetch(`${BASE_URL}`,{
       method: 'PUT',
       headers: {'content-type': 'application/json','Authorization': 'Bearer ' + tokenService.getToken()},
@@ -32,8 +31,18 @@ function updateUserInfo(userData){
   .then(res => res.json())
 }
 
+function addFavState(id, state){
+  return fetch (`${BASE_URL}${id}/${state}`, {
+    method: "POST",
+    headers: {'content-type': 'application/json', 'Authorization': 'Bearer ' + tokenService.getToken()},
+    
+  }, {mode: "cors"})
+  .then(res => res.json())
+}
+
 export default {
   getAllUsers,
   getOne,
-  updateUserInfo
+  updateUserInfo,
+  addFavState
 }

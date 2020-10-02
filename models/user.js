@@ -4,13 +4,19 @@ const Schema = mongoose.Schema
 
 const SALT_ROUNDS = 6;
 
+const favStateSchema = new mongoose.Schema({
+    name: String,
+    code: String
+
+})
+
 const userSchema = new mongoose.Schema({
   name: String,
   email: {type: String, required: true, lowercase: true, unique: true},
   password: String,
   avatar: {type: String, default: `https://picsum.photos/200`},
   bio: String,
-  favState: [{type: Schema.Types.ObjectId, ref:'User'}]
+  favState: [favStateSchema]
 
 
 }, {

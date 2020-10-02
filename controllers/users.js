@@ -4,7 +4,6 @@ module.exports = {
   index,
   getOne,
   updateUser,
-  showUserFavState,
   addFavState
 };
 
@@ -22,23 +21,15 @@ function getOne(req, res) {
 function addFavState(req, res){
   User.findById(req.user._id)
   .then(user => {
-    if(req.body.favState === req.user._id){
-      res.json(user)
-    }else{
-      user.favState.push(req.body.favState)
+    // if(req.body.favState === req.user._id){
+    //   res.json(user)
+    // }else{
+      user.favState.push(req.params.state)
       user.save().then(
         res.json(user))
     }
-  })
-}
-
-function showUserFavState(req, res){
-  User.findById(req.user._id)
-  .populate('favState')
-  .then(user => 
-    res.json(user.favState)
-    )
-}
+   )
+ }
 
 function updateUser(req, res){
   User.findByIdAndUpdate(req.user._id, req.body, {new: true})

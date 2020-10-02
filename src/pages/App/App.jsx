@@ -16,7 +16,7 @@ import "./App.css";
 class App extends Component {
   state = {
     user: authService.getUser(),
-    userData: {},
+    userData: null,
     resources: null,
     stats: null
   };
@@ -95,7 +95,8 @@ class App extends Component {
         <Route 
         exact path='/profile'
         render={() => (
-        this.state.user ? <Profile 
+        this.state.user ? <Profile
+        userData = {userData} 
         // user={this.state.updatedUser._id ? this.state.updatedUser : ''}
         // handleUpdateUser={this.handleUpdateUser}
         />

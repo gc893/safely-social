@@ -9,9 +9,9 @@ const usersCtrl = require('../controllers/users');
 router.use(require("../config/auth"));
 router.get("/", checkAuth, usersCtrl.index);
 router.get("/:id", checkAuth, usersCtrl.getOne);
-router.get('/:userId/favState', checkAuth, usersCtrl.showUserFavState)
+router.post('/:userId/:state', checkAuth, usersCtrl.addFavState)
 router.put('/', checkAuth, usersCtrl.updateUser)
-router.post('/friends', checkAuth, usersCtrl.addFavState)
+
 
 
 /*---------- Auth Checker ----------*/

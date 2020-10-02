@@ -5,9 +5,7 @@ import userService from "../../services/userService";
 
 class Profile extends Component {
     state = { 
-        userData: {
-           
-        }
+       
      }
 
      async componentDidMount(){
